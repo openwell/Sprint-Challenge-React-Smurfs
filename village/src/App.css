@@ -1,3 +1,13 @@
 .App {
   text-align: center;
 }
+.NavLinks{
+  background: rgb(228, 208, 158);
+  padding: 10px;
+}
+.NavLinks a{
+  padding: 10px;
+}
+.NavLinks a:link, .NavLinks a:visited{
+  text-decoration: none;
+}
