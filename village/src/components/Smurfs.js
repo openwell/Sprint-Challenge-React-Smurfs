@@ -4,7 +4,6 @@ import Smurf from './Smurf';
 
 class Smurfs extends Component {
   pageByIdHandler=(id)=>{
-    // console.log(this.props)
     this.props.history.push('/smurfs/'+ id)
   }
   render() {

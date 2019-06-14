@@ -15,11 +15,23 @@ class smurfDetails extends Component {
       });
     });
   }
+  deleteSmurfHandler = () => {
+    axios.delete("http://localhost:3333/smurfs/" + this.props.match.params.id);
+    window.location.pathname = '/'
+  };
   render() {
     let data = null;
     if (this.state.smurf) {
       let { name, id, age, height } = this.state.smurf;
-      data = <Smurf name={name} id={id} age={age} height={height} />;
+      data = (
+        <Smurf
+          name={name}
+          id={id}
+          age={age}
+          height={height}
+          delete={this.deleteSmurfHandler}
+        />
+      );
     }
     return <div>{data}</div>;
   }
