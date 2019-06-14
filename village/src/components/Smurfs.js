@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-
+import './Smurfs.css'
 import Smurf from './Smurf';
 
 class Smurfs extends Component {
+  pageByIdHandler=(id)=>{
+    this.props.history.push('/smurfs/'+ id)
+  }
   render() {
     return (
       <div className="Smurfs">
@@ -16,6 +19,7 @@ class Smurfs extends Component {
                 age={smurf.age}
                 height={smurf.height}
                 key={smurf.id}
+                singlePage={this.pageByIdHandler}
               />
             );
           })}
