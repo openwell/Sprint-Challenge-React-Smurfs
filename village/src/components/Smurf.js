@@ -9,11 +9,14 @@ const Smurf = props => {
       <h3>{props.name}</h3>
       <strong>{props.height} tall</strong>
       <p>{props.age} smurf years old</p>
+      
+      <button style={{background: '#2ecc71', outline: 'none'}} hidden={!props.edit} onClick={props.edit ? props.edit : null} >Edit</button>
       <button
+      style={{background: '#e74c3c', outline: 'none'}} 
         hidden={!props.delete}
         onClick={props.delete ? props.delete : null}
       >
-        delete
+        Delete
       </button>
     </div>
   );

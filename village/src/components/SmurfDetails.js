@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import "./Smurfs.css";
 import Smurf from "./Smurf";
 import axios from "axios";
+import SmurfForm from "./SmurfForm";
 class smurfDetails extends Component {
   state = {
-    smurf: null
+    smurf: null,
+    edit: true
   };
   componentDidMount() {
     axios.get("http://localhost:3333/smurfs").then(data => {
@@ -17,7 +19,10 @@ class smurfDetails extends Component {
   }
   deleteSmurfHandler = () => {
     axios.delete("http://localhost:3333/smurfs/" + this.props.match.params.id);
-    window.location.pathname = '/'
+    window.location.pathname = "/";
+  };
+  editSmurfHandler = () => {
+    this.setState(state => ({ edit: !state.edit }));
   };
   render() {
     let data = null;
@@ -30,10 +35,18 @@ class smurfDetails extends Component {
           age={age}
           height={height}
           delete={this.deleteSmurfHandler}
+          edit={this.editSmurfHandler}
         />
       );
     }
-    return <div>{data}</div>;
+    return (
+      <div>
+        {data}
+        <div hidden={this.state.edit}>
+          <SmurfForm edit={true} id={this.props.match.params.id} />
+        </div>
+      </div>
+    );
   }
 }
 

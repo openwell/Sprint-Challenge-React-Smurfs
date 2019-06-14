@@ -7,25 +7,40 @@ class SmurfForm extends Component {
     this.state = {
       name: "",
       age: "",
-      height: ""
+      height: "",
+      edit: null
     };
+  }
+  componentDidMount() {
+    this.setState({ edit: this.props.edit ? true : false });
   }
 
   addSmurf = event => {
     event.preventDefault();
-    // add code to create the smurf using the api
-    axios.post("http://localhost:3333/smurfs", this.state);
-    this.setState({
-      name: "",
-      age: "",
-      height: ""
-    });
-    window.location.pathname = '/'
+    if (!this.state.edit) {
+      // add code to create the smurf using the api
+      axios.post("http://localhost:3333/smurfs", this.state);
+      this.setState({
+        name: "",
+        age: "",
+        height: ""
+      });
+      window.location.pathname = "/";
+    } else {
+      axios.put("http://localhost:3333/smurfs/" +this.props.id, this.state);
+      this.setState({
+        name: "",
+        age: "",
+        height: ""
+      });
+      window.location.pathname = "/smurfs/" +this.props.id;
+    }
   };
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+  editSmurf = (event, id) => {};
 
   render() {
     return (
@@ -49,7 +64,11 @@ class SmurfForm extends Component {
             value={this.state.height}
             name="height"
           />
-          <button type="submit">Add to the village</button>
+          {!this.state.edit ? (
+            <button type="submit">Add to the village</button>
+          ) : (
+            <button type="submit">Edit to the village</button>
+          )}
         </form>
       </div>
     );
