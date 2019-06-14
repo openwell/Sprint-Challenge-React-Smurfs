@@ -4,7 +4,8 @@ import {
   NavLink,
   Route,
   BrowserRouter as Router,
-  Switch
+  Switch,
+  Redirect
 } from "react-router-dom";
 
 import "./App.css";
@@ -32,21 +33,26 @@ class App extends Component {
   // You'll need to make sure you have the right properties on state and pass them down to props.
   render() {
     return (
+
       <Router>
         <div className="App">
           <ul className='NavLinks'>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/home">Home</NavLink>
             <NavLink to="/smurf-form">Smurf-Form</NavLink>
           </ul>
-          <Switch>
+          <Route
+          render={({ location }) => (
+          <Switch location={location}>
             <Route
-              path="/"
+              path="/home"
               exact
               render={props => <Smurfs smurfs={this.state.smurfs} {...props} />}
             />
             <Route path="/smurf-form" component={SmurfForm} />
             <Route path="/smurfs/:id" component={SmurfDetails} />
+            <Route path='*' render={props => <Redirect to='/home'/>}/>
           </Switch>
+          )} />
         </div>
       </Router>
     );

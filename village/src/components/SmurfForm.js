@@ -27,13 +27,13 @@ class SmurfForm extends Component {
       });
       window.location.pathname = "/";
     } else {
-      axios.put("http://localhost:3333/smurfs/" +this.props.id, this.state);
+      axios.put("http://localhost:3333/smurfs/" + this.props.id, this.state);
       this.setState({
         name: "",
         age: "",
         height: ""
       });
-      window.location.pathname = "/smurfs/" +this.props.id;
+      window.location.pathname = "/smurfs/" + this.props.id;
     }
   };
 
@@ -64,11 +64,9 @@ class SmurfForm extends Component {
             value={this.state.height}
             name="height"
           />
-          {!this.state.edit ? (
-            <button type="submit">Add to the village</button>
-          ) : (
-            <button type="submit">Edit to the village</button>
-          )}
+          <button type="submit">
+            {!this.state.edit ? "Add to the village" : "Edit to the village"}
+          </button>
         </form>
       </div>
     );

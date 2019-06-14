@@ -6,3 +6,6 @@
     margin-bottom: 5px;
     cursor: pointer;
 }
+.Smurf:hover{
+    box-shadow: none;
+}

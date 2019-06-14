@@ -1,13 +1,20 @@
 .App {
   text-align: center;
 }
-.NavLinks{
-  background: rgb(228, 208, 158);
+.NavLinks {
+  background: #7f8c8d;
   padding: 10px;
 }
-.NavLinks a{
+.NavLinks a {
   padding: 10px;
 }
-.NavLinks a:link, .NavLinks a:visited{
+.NavLinks a:link,
+.NavLinks a:visited {
   text-decoration: none;
+  color: #2c3e50;
+}
+.NavLinks a.active {
+  text-decoration-line: overline underline;
+  text-decoration-style: wavy;
+  text-decoration-color: black;
 }
